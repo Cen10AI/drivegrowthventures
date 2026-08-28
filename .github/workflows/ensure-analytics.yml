@@ -22,8 +22,8 @@ jobs:
             fi
           done
           if [ "$changed" = "1" ]; then
-            git config user.name "analytics-guard"
-            git config user.email "actions@users.noreply.github.com"
+            git config user.name "sonidevang"
+            git config user.email "devang24@gmail.com"
             git add -A
             git commit -m "Auto-restore Vercel analytics script"
             git push
