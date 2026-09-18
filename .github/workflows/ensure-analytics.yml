@@ -20,6 +20,11 @@ jobs:
               echo "injected into $f"
               changed=1
             fi
+            if ! grep -q "/events.js" "$f"; then
+              sed -i 's|</body>|<script defer src="/events.js"></script></body>|' "$f"
+              echo "injected events into $f"
+              changed=1
+            fi
           done
           if [ "$changed" = "1" ]; then
             git config user.name "sonidevang"
