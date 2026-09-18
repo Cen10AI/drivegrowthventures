@@ -1,0 +1,17 @@
+// Custom event tracking (Vercel Web Analytics — Pro/Plus).
+// Injected on every page by .github/workflows/ensure-analytics.yml — do not remove.
+window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+document.addEventListener("click", function (e) {
+  var a = e.target && e.target.closest ? e.target.closest("a") : null;
+  if (!a) return;
+  var href = a.getAttribute("href") || "";
+  var sec = a.closest("section[id],footer,header,nav");
+  var placement = (sec && (sec.id || sec.tagName.toLowerCase())) || "body";
+  if (href.indexOf("mailto:") === 0) {
+    va("event", { name: "email_click", data: { placement: placement, page: location.pathname } });
+  } else if (/^https?:\/\//.test(href) && href.indexOf(location.hostname) === -1) {
+    var domain = "";
+    try { domain = new URL(href).hostname.replace(/^www\./, ""); } catch (err) {}
+    va("event", { name: "outbound", data: { domain: domain, page: location.pathname } });
+  }
+});
