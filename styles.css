@@ -758,11 +758,17 @@ footer{padding:56px 0 28px;border-top:1px solid var(--border);background:var(--b
   .nav-links.nav-open .nav-cta-mobile a{color:var(--purple-dark);font-weight:700;}
 }
 
-/* Touch devices: slightly larger tap targets on icon buttons */
+/* Touch devices: comfortable tap targets + prevent iOS zoom on input focus */
 @media (hover:none) and (pointer:coarse){
   .theme-toggle, .menu-toggle{width:40px;height:40px;}
   .back-to-top{width:48px;height:48px;bottom:calc(20px + env(safe-area-inset-bottom, 0px));right:20px;}
-  .nav-links a{padding:6px 0;display:inline-block;}
+  .nav-links a{padding:10px 0;display:inline-block;}
+  /* iOS Safari zooms the page when focusing an input under 16px; keep them at 16px */
+  input, textarea{font-size:16px;}
+  /* larger hit area for the circular social icons */
+  .footer-social a{width:44px;height:44px;}
+  /* give the inline "Visit site" links a taller tap area without shifting the layout */
+  .port-visit{padding:8px 0;}
 }
 
 /* ============================================
